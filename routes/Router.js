@@ -8,17 +8,19 @@ const getUserId = require('../controller/user_controller.js').getUserId;
 // a variable to save a session
 var session;
 
-
+/**step 1 */
 
 //หน้าที่ check ว่า ต้อง มีการ auth ป่าว หรือว่าไม่ต้อง auth ละ
 router.get('/', (req, res) => {
     session = req.session;
     if (session.userid) {
         res.redirect('/dashboard');
-    } else
-        res.render('login.ejs'); // the most beutiful login ever (may be) 
+    } else{
+        res.render('login.ejs'); // the most beutiful login ever (may be)
+    } 
 });
 
+/**step 2 */
 //login api ไม่สามารถ get ปกติได้
 router.post('/login', async (req, res) => {
     //console.log("in the session :",req.session);
@@ -49,10 +51,13 @@ router.get('/dashboard',
         }
     },
     async (req, res) => {/**if has log in yet */
-        res.render("dashboard.ejs")
+    session = req.session;
+    user = (await getUsers({id:session.userid}))[0];
+        res.render("dashboard.ejs",user)
     });
 
-router.get('/admin', (req, res) => { /**for render login page */
+router.get('/admin', async (req, res) => { /**for render login page */
+    
     res.render('adminLogin.ejs');
 });
 
