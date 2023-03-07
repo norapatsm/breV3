@@ -3,6 +3,7 @@ const router = express.Router()
 const getaAdminId = require('../controller/adminController.js');
 const getUsers = require('../controller/user_controller.js').getUsers;
 const getUserId = require('../controller/user_controller.js').getUserId;
+const gettools = require('../controller/toolsController.js').gettools;
 
 
 // a variable to save a session
@@ -53,7 +54,13 @@ router.get('/dashboard',
     async (req, res) => {/**if has log in yet */
     session = req.session;
     user = (await getUsers({id:session.userid}))[0];
-        res.render("dashboard.ejs",user)
+    tools = await gettools({});
+        res.render("dashboard.ejs",{
+            data:{
+                user:  user,
+                tools: tools
+            }
+        })
     });
 
 router.get('/admin', async (req, res) => { /**for render login page */

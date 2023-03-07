@@ -13,7 +13,7 @@ db.on('error', (err) => {
     console.error('connection error T_T :', err);
 })
 
-const userSchema = new mongoose.Schema({//collection record ของนักศึกษา... ทำกิจกรรม... เเล้ว เพื่อให้ง่ายต่อการ searching
+const userSchema = new mongoose.Schema({
     username: { type: String, lowercase: true, trim: true, required: true },
     password: { type: String, lowercase: true, trim: true, required: true },
     fname: { type: String, lowercase: true, trim: true, required: true },

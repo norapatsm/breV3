@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<style>
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: DodgerBlue;
+    }
+
+    .flex-container>div {
+        background-color: #f1f1f1;
+        width: 500px;
+        margin: 10px;
+        border-radius: 30px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+    }
+</style>
+
 <body>
-    about user<hr>
-    username is <%- user.username %><br>
-    your name is <%- user.fname %> <%- user.lname %><br>
-    
+    about user<br>
+    username is <%- data.user.username %><br>
+        your name is <%- data.user.fname %> <%- data.user.lname %><br>
+    <hr>
+    <div class="flex-container">
+        <% data.tools.forEach(tool => { %>
+            <div>
+                <img src="<%- tool.photo_url %>" alt="tool.name" width="300px"><hr>
+                name : <%- tool.name %><br>
+                amount : <%- tool.amount %>
+            </div>
+        <% }) %>
+    </div>
+
+
 </body>
+
 </html>
