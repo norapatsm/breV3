@@ -6,7 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404</title>
 </head>
-<body>
-    cannot found <%- url %> in method get
+<style>
+    body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("404.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+*{
+    font-size: 100px;
+    color: red;
+}
+</style>
+<body class="bg">
+    cannot found <%- url %> <br> in method get<br>
+    <a href="/">go to home page</a>
 </body>
 </html>
