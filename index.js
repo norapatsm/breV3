@@ -23,7 +23,7 @@ app.use('/', mainRouter);
 app.use(express.static('public')) // folder สาธราณะ ไม่ต้องเข้าผ่าน route
 
 app.get('*',(req,res)=>{
-    res.send("404");
+    res.render("404.ejs",{url:req.url});
 });
 
 const port = 3000;
