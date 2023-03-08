@@ -5,7 +5,6 @@ const getUsers = require('../controller/user_controller.js').getUsers;
 const getUserId = require('../controller/user_controller.js').getUserId;
 const gettools = require('../controller/toolsController.js').gettools;
 
-
 // a variable to save a session
 var session;
 
@@ -52,12 +51,15 @@ router.get('/dashboard',
     },
     async (req, res) => {/**if has log in yet */
         session = req.session;
-        user = (await getUsers({ _id: session.userid }))[0];
+        const user = (await getUsers({ _id: session.userid }))[0];
         const tools = await gettools({});
+        const borrowed = user.borrowed;
+        console.log(borrowed);
         res.render("dashboard.ejs", {
             data: {
                 user: user,
-                tools: tools
+                tools: tools,
+                borrowed:borrowed
             }
         })
     });
@@ -95,23 +97,42 @@ router.get('/adminboard', (req, res, next) => {
     res.render('adminboard.ejs');
 });
 
-router.get('/user/borrow',(req,res,next)=>{
+router.get('/user/borrow', (req, res, next) => {
     session = req.session;
-    if (session.userid){
+    if (session.userid) {
         next();
     }
-    else{
+    else {
         res.redirect('/');
     }
 },
-async (req,res)=>{
+async (req, res) => {
     const tools = await gettools({});
-    res.render('borrow.ejs',{
-        data:{
-            tools:tools
+    res.render('borrow.ejs', {
+        data: {
+            tools: tools
         }
     });
 });
+
+router.post('/user/borrow', (req, res, next) => {
+    session = req.session;
+    if (session.userid) {
+        next();
+    }
+    else {
+        res.redirect('/');
+    }
+},
+    async (req, res) => {
+        const id = req.session.userid;
+        let borrow_data = req.body;
+        for (const [key, value] of Object.entries(borrow_data)) {
+            console.log(`${key}: ${value}`);
+            /**function ยืมของต้องมาทำต่อ */
+        }
+        console.log([id, items, amounts], "has borrowed item");
+    });
 
 
 router.get('/logout', (req, res) => {

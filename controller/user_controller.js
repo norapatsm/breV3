@@ -25,7 +25,7 @@ function setUser(filter, newData){
     return new Promise((resolve, reject) => {
         users.updateOne(filter, newData,(err,data)=>{
             if(err) reject(err);
-            resolve(data);
+            resolve(data.borrowed);
         })
     })
 }
@@ -47,6 +47,10 @@ function deleteUser(in_json){
         })
     })
 }
+
+
+
+
 
 module.exports = {
     getUserId:getUserId,
