@@ -31,14 +31,13 @@ router.post('/login', async (req, res) => {
     if (id) {
         session = req.session;
         session.userid = id;
-        console.log(session, "has loged in\n");
+        console.log(session.userid, "has loged in\n");
         res.redirect('/dashboard');
     }
     else {
         res.render('login.ejs');
     }
 })
-
 
 router.get('/dashboard',
     (req, res, next) => { //after dashboard
@@ -54,7 +53,7 @@ router.get('/dashboard',
     async (req, res) => {/**if has log in yet */
         session = req.session;
         user = (await getUsers({ _id: session.userid }))[0];
-        tools = await gettools({});
+        const tools = await gettools({});
         res.render("dashboard.ejs", {
             data: {
                 user: user,
@@ -104,15 +103,16 @@ router.get('/user/borrow',(req,res,next)=>{
     else{
         res.redirect('/');
     }
-},async (req,res)=>{
-    let tools = await gettools({any:"thing"});
-    console.log();
-    res.render('borrow.ejs', {
+},
+async (req,res)=>{
+    const tools = await gettools({});
+    res.render('borrow.ejs',{
         data:{
             tools:tools
         }
     });
 });
+
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
