@@ -1,8 +1,20 @@
-const events=require('./models/eventModel.js');
-events.find({},(err,data)=>{
-    if(err){
-        console.log("error");
-    }else{
-        console.log(data);
+const getUsers = require('./controller/user_controller.js').getUsers;
+
+async function main() {
+    const t = await getUsers({ _id: "63f87b0cad469d09457d2dec" });
+    console.log(t);
+}
+
+main()
+
+
+
+const a = [
+    {
+        _id: new ObjectId("63f87b0cad469d09457d2dec"),
+        username: '6410301012',
+        password: '1234',
+        fname: 'norapat',
+        lname: 'saema'
     }
-});
+]

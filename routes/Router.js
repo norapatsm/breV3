@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
     session = req.session;
     if (session.userid) {
         res.redirect('/dashboard');
-    } else{
+    } else {
         res.render('login.ejs'); // the most beutiful login ever (may be)
-    } 
+    }
 });
 
 /**step 2 */
@@ -52,19 +52,19 @@ router.get('/dashboard',
         }
     },
     async (req, res) => {/**if has log in yet */
-    session = req.session;
-    user = (await getUsers({id:session.userid}))[0];
-    tools = await gettools({});
-        res.render("dashboard.ejs",{
-            data:{
-                user:  user,
+        session = req.session;
+        user = (await getUsers({ _id: session.userid }))[0];
+        tools = await gettools({});
+        res.render("dashboard.ejs", {
+            data: {
+                user: user,
                 tools: tools
             }
         })
     });
 
 router.get('/admin', async (req, res) => { /**for render login page */
-    
+
     res.render('adminLogin.ejs');
 });
 
@@ -94,6 +94,24 @@ router.get('/adminboard', (req, res, next) => {
     }
 }, async (req, res) => {
     res.render('adminboard.ejs');
+});
+
+router.get('/user/borrow',(req,res,next)=>{
+    session = req.session;
+    if (session.userid){
+        next();
+    }
+    else{
+        res.redirect('/');
+    }
+},async (req,res)=>{
+    let tools = await gettools({any:"thing"});
+    console.log();
+    res.render('borrow.ejs', {
+        data:{
+            tools:tools
+        }
+    });
 });
 
 router.get('/logout', (req, res) => {
