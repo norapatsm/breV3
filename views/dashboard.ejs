@@ -18,7 +18,10 @@
     <hr>
     <a href="/user/borrow">ยืมของเพิ่ม</a>            
     <hr>
-    <%- data.borrowed %>
+    ของที่เรายืมอยู่<br>
+    <% data.borroweds.forEach(item => { %>
+        <%- item.toolName %> จำนวน <%- item.amount %><br>
+    <% }) %>
 
 </body>
 

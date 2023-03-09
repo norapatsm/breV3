@@ -52,14 +52,20 @@ router.get('/dashboard',
     async (req, res) => {/**if has log in yet */
         session = req.session;
         const user = (await getUsers({ _id: session.userid }))[0];
-        const tools = await gettools({});
-        const borrowed = user.borrowed;
-        console.log(borrowed);
+        const borroweds = user.borrowed;
+        let payload_borroweds=[];
+        for (const [k, v] of Object.entries(borroweds)) {
+            //console.log(`${key}: ${value}`);
+            const tool = (await gettools({_id:k}))[0];
+            const toolName = tool.name;
+            const amount = v;
+            payload_borroweds.push({toolName,amount});
+        }
+        console.log(payload_borroweds);
         res.render("dashboard.ejs", {
             data: {
                 user: user,
-                tools: tools,
-                borrowed:borrowed
+                borroweds: payload_borroweds
             }
         })
     });
@@ -106,14 +112,14 @@ router.get('/user/borrow', (req, res, next) => {
         res.redirect('/');
     }
 },
-async (req, res) => {
-    const tools = await gettools({});
-    res.render('borrow.ejs', {
-        data: {
-            tools: tools
-        }
+    async (req, res) => {
+        const tools = await gettools({});
+        res.render('borrow.ejs', {
+            data: {
+                tools: tools
+            }
+        });
     });
-});
 
 router.post('/user/borrow', (req, res, next) => {
     session = req.session;
@@ -126,12 +132,12 @@ router.post('/user/borrow', (req, res, next) => {
 },
     async (req, res) => {
         const id = req.session.userid;
-        let borrow_data = req.body;
+        const borrow_data = req.body;
         for (const [key, value] of Object.entries(borrow_data)) {
             console.log(`${key}: ${value}`);
             /**function ยืมของต้องมาทำต่อ */
         }
-        console.log([id, items, amounts], "has borrowed item");
+        res.send(id);
     });
 
 

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, lowercase: true, trim: true, required: true },
     fname: { type: String, lowercase: true, trim: true, required: true },
     lname: { type: String, lowercase: true, trim: true, required: true },
-    borrow: { type: Object, default: {} }
+    borrowed: { type: Object, default: {} }
 });
 
 module.exports = mongoose.model('users', userSchema);
