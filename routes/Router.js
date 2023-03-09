@@ -61,7 +61,7 @@ router.get('/dashboard',
             const amount = v;
             payload_borroweds.push({toolName,amount});
         }
-        console.log(payload_borroweds);
+        //console.log(payload_borroweds);
         res.render("dashboard.ejs", {
             data: {
                 user: user,
@@ -131,15 +131,37 @@ router.post('/user/borrow', (req, res, next) => {
     }
 },
     async (req, res) => {
-        const id = req.session.userid;
+        const userid = req.session.userid;
         const borrow_data = req.body;
-        for (const [key, value] of Object.entries(borrow_data)) {
-            console.log(`${key}: ${value}`);
-            /**function ยืมของต้องมาทำต่อ */
+        for (let [key, value] of Object.entries(borrow_data)) {
+            value=Number(value);/**สิ่งที่มันรับเข้ามาดันเป็น string ทั้งหมดเลยต้อง convert */
+            //console.log(`${key}: ${value}`);
+            //console.log(typeof key,typeof value);
+            if (value!=0){
+                await borrowTool(userid,key,value)//id ของ เเละ จำนวน
+            }
         }
         res.send(id);
     });
 
+router.get('/user/returnitem',(req,res,next)=>{
+    session = req.session;
+    if (session.userid) {
+        next();
+    }
+    else {
+        res.redirect('/');
+    }
+},async (req,res,next)=>{
+    const user = (await getUsers({ _id: session.userid }))[0];
+    if (user.borrowed){
+        next();
+    }else{
+        res.redirect('/dashboard');
+    }
+},async (req,res,next)=>{
+    /** คืนของ */
+})
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
