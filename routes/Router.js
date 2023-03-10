@@ -182,6 +182,21 @@ router.get('/setting_users',(req,res,next)=>{
     });
 });
 
+router.get('/user/cerate',(req,res,next)=>{
+    session = req.session
+    if (session.adminid) {
+        next();
+    } else {
+        res.redirect('/admin');
+    }
+},(req,res,next)=>{
+    res.render('createuser.ejs')
+});
+
+router.post('/user/cerate',(req,res,next)=>{
+    
+});
+
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
