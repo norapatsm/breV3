@@ -16,7 +16,10 @@ router.get('/', (req, res) => {
     session = req.session;
     if (session.userid) {
         res.redirect('/dashboard');
-    } else {
+    }
+    if(session.adminid){
+        res.redirect('/adminboard');
+    }else {
         res.render('login.ejs'); // the most beutiful login ever (may be)
     }
 });
@@ -164,6 +167,17 @@ router.get('/user/returnitem',(req,res,next)=>{
     await returnItem(session.userid);
     res.redirect('/dashboard')
 })
+
+router.get('/setting_users',(req,res,next)=>{
+    session = req.session
+    if (session.adminid) {
+        next();
+    } else {
+        res.redirect('/admin');
+    }
+},(req,res,next)=>{
+    res.render('setting_user.ejs');
+});
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
