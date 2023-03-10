@@ -19,13 +19,13 @@ function getUsers(in_json){
     });
 }
 
-function setUser(filter, newData){
+function updateUser(filter, newData){
     // console.log('fileter is ',filter);
     // console.log('newdata is',newData);
     return new Promise((resolve, reject) => {
         users.updateOne(filter, newData,(err,data)=>{
             if(err) reject(err);
-            resolve(data.borrowed);
+            resolve(data);
         })
     })
 }
@@ -53,6 +53,7 @@ function deleteUser(in_json){
 
 
 module.exports = {
-    getUserId:getUserId,
-    getUsers:getUsers
+    getUserId,
+    getUsers,
+    updateUser
 };

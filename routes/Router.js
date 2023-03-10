@@ -5,6 +5,7 @@ const getUsers = require('../controller/user_controller.js').getUsers;
 const getUserId = require('../controller/user_controller.js').getUserId;
 const gettools = require('../controller/toolsController.js').gettools;
 const borrowTool = require('../controller/toolsController').borrowTool;
+const returnItem = require('../controller/toolsController').returnItem;
 // a variable to save a session
 var session;
 
@@ -160,7 +161,8 @@ router.get('/user/returnitem',(req,res,next)=>{
         res.redirect('/dashboard');
     }
 },async (req,res,next)=>{
-    /** คืนของ */
+    await returnItem(session.userid);
+    res.redirect('/dashboard')
 })
 
 router.get('/logout', (req, res) => {
