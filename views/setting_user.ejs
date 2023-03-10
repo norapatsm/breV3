@@ -27,9 +27,22 @@
 
 </style>
 <body>
+    <a href="/logout">logout</a>
     <div class="flex-container">
         <div><a href="/user/cerate">create new user</a></div>
         
+        <% data.users.forEach(user => { %>
+            <div>
+
+                id=<%- user._id %><br>
+                username=<%- user.username %><br>
+                password=<%- user.password %><br>
+                name=<%- user.fname %>_<%- user.lname %><br>
+
+
+            </div>
+        <% }) %>
+
     </div>
 
 </body>
