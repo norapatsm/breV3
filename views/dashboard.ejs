@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="dashboard.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +16,14 @@
     about user<br>
     username is <%- data.user.username %><br>
     your name is <%- data.user.fname %> <%- data.user.lname %><br>
-    <hr>
-    <a href="/user/borrow">ยืมของเพิ่ม</a>            
-    <hr>
+    <hr>           
     ของที่เรายืมอยู่<br>
     <% data.borroweds.forEach(item => { %>
         <%- item.toolName %> จำนวน <%- item.amount %><br>
     <% }) %>
 <hr>
+<a href="/user/borrow">ยืมของเพิ่ม</a> 
+<a href="/user/borrow">ยืมของเพิ่ม</a>   
 <a href="/user/returnitem" >คืนของ</a>
 <a href="/logout" >logout</a>
 </body>
