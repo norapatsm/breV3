@@ -175,8 +175,11 @@ router.get('/setting_users',(req,res,next)=>{
     } else {
         res.redirect('/admin');
     }
-},(req,res,next)=>{
-    res.render('setting_user.ejs');
+},async (req,res,next)=>{
+    let users = await getUsers({});
+    res.render('setting_user.ejs',{
+        data:{users}
+    });
 });
 
 router.get('/logout', (req, res) => {
