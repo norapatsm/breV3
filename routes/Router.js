@@ -6,6 +6,7 @@ const getUserId = require('../controller/user_controller.js').getUserId;
 const gettools = require('../controller/toolsController.js').gettools;
 const borrowTool = require('../controller/toolsController').borrowTool;
 const returnItem = require('../controller/toolsController').returnItem;
+const createUser = require('../controller/user_controller').createUser;
 // a variable to save a session
 var session;
 
@@ -194,7 +195,15 @@ router.get('/user/cerate',(req,res,next)=>{
 });
 
 router.post('/user/cerate',(req,res,next)=>{
-    
+    session = req.session
+    if (session.adminid) {
+        next();
+    } else {
+        res.redirect('/admin');
+    }
+},async (req,res,next)=>{
+    await createUser(req.body);
+    res.redirect('/setting_users');
 });
 
 router.get('/logout', (req, res) => {

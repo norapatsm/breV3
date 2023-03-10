@@ -55,5 +55,6 @@ function deleteUser(in_json){
 module.exports = {
     getUserId,
     getUsers,
-    updateUser
+    updateUser,
+    createUser
 };
