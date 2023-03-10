@@ -4,7 +4,7 @@ const getaAdminId = require('../controller/adminController.js');
 const getUsers = require('../controller/user_controller.js').getUsers;
 const getUserId = require('../controller/user_controller.js').getUserId;
 const gettools = require('../controller/toolsController.js').gettools;
-
+const borrowTool = require('../controller/toolsController').borrowTool;
 // a variable to save a session
 var session;
 
@@ -129,8 +129,7 @@ router.post('/user/borrow', (req, res, next) => {
     else {
         res.redirect('/');
     }
-},
-    async (req, res) => {
+},async (req, res) => {
         const userid = req.session.userid;
         const borrow_data = req.body;
         for (let [key, value] of Object.entries(borrow_data)) {
@@ -139,9 +138,10 @@ router.post('/user/borrow', (req, res, next) => {
             //console.log(typeof key,typeof value);
             if (value!=0){
                 await borrowTool(userid,key,value)//id ของ เเละ จำนวน
+                //res.redirect('/dashboard');
             }
         }
-        res.send(id);
+        res.redirect('/dashboard');
     });
 
 router.get('/user/returnitem',(req,res,next)=>{
