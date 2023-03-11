@@ -183,7 +183,7 @@ router.get('/setting_users',(req,res,next)=>{
     });
 });
 
-router.get('/user/cerate',(req,res,next)=>{
+router.get('/user/create',(req,res,next)=>{
     session = req.session
     if (session.adminid) {
         next();
@@ -194,7 +194,7 @@ router.get('/user/cerate',(req,res,next)=>{
     res.render('createuser.ejs')
 });
 
-router.post('/user/cerate',(req,res,next)=>{
+router.post('/user/create',(req,res,next)=>{
     session = req.session
     if (session.adminid) {
         next();
