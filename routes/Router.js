@@ -50,7 +50,7 @@ router.get('/dashboard',
             //res.send('now loading dashboard . . .');
             next();//เข้าสู่ dashboard จริงๆ
         } else {
-            //res.send('U must login before use dashboard<br> <a href="/">login</a>'); // ปัญญาออ่นไป
+            //res.send('U must login before use dashboard<br> <a href="/">login</a>'); //
             res.redirect('/');
         }
     },
