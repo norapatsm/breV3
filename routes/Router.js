@@ -211,4 +211,21 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+router.post('/tools/create',(req,res,next)=>{
+    session = req.session
+    if (session.adminid) {
+        next();
+    } else {
+        res.redirect('/admin');
+    }
+},async (req,res,next)=>{
+    await createUser(req.body);
+    res.redirect('/setting_tools');
+});
+
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
+
 module.exports = router;

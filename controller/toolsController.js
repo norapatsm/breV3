@@ -78,6 +78,15 @@ function returnItem(userid){
     })
 }
 
+function createtools(newTool){
+    return new Promise((resolve, reject) => {
+        users.create(newTool,(err,data)=>{
+            if(err) reject(err);
+            else resolve(data);
+        });
+    })
+}
+
 module.exports = {
     gettools,
     borrowTool,
