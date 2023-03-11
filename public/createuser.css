@@ -64,7 +64,7 @@ body {
   }
 
 
-button.logout {
+  .logout-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -75,7 +75,7 @@ button.logout {
     border: none;
 }
 
-button.logout:hover {
+.logout-btn:hover  {
     background-color: #007fff;
     cursor: pointer;
 }
