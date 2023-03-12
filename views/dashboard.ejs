@@ -15,7 +15,7 @@
         <p>Username is <%- data.user.username %></p>
         <p>Your name is <%- data.user.fname %> <%- data.user.lname %></p>
 
-        <h2>Items you've borrowed</h2>
+        <h2>ของที่ยืม</h2>
         <% data.borroweds.forEach(item => { %>
             <p><%- item.toolName %> Quantity: <%- item.amount %></p>
         <% }) %>
