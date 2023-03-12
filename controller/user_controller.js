@@ -1,4 +1,4 @@
-const users = require('../models/userModel.js');
+    const users = require('../models/userModel.js');
 
 function getUserId(un, pw) {
     return new Promise((resolve, reject) => {

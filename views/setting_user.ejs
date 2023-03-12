@@ -38,10 +38,27 @@
              background-color: #007fff;
              cursor: pointer;
          }
+
+         button.back {
+             position: fixed;
+             bottom: 20px;
+             left: 20px;
+             padding: 10px 20px;
+             background-color: #0056b3;
+             color: #fff;
+             border-radius: 4px;
+             border: none;
+         }
+
+         button.back:hover {
+             background-color: #007fff;
+             cursor: pointer;
+         }
      </style>
 </head>
 <body>
      <button class="logout" onclick="location.href='/logout'">Logout</button>
+     <button class="back" onclick="location.href='/adminboard'">Back</button>
      <div class="flex-container">
          <div><a href="/user/create">create new user</a></div>
 

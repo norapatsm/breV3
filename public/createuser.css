@@ -64,7 +64,7 @@ body {
   }
 
 
-  .logout-btn {
+  button.logout {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -75,7 +75,24 @@ body {
     border: none;
 }
 
-.logout-btn:hover  {
+button.logout:hover {
     background-color: #007fff;
     cursor: pointer;
+}
+
+
+button.back {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #0056b3;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+}
+
+button.back:hover { 
+  background-color: #007fff;
+  cursor: pointer;
 }
