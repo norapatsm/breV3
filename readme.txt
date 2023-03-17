@@ -6,7 +6,7 @@ It can be used for education.It can be used to study and adapt in learning, but 
 
  How to use this program!!
 1.git clone or download and extract folder
-2.download mongodb
+2.download mongodb version 6.0.5 is the minimum.
 3 create new database in mongodb
 4 copy your mongodb url in admin model, tools model and user model in line 3 in every file
 5 Create a folder name admins and Add Data  admins with username and password.example
