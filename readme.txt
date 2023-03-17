@@ -1,7 +1,6 @@
 warning!!!!!!
 This project is a borrow equipment prototype project created by Norapat Saema in Software engineering 2 subject at CDTI University.
-It can be used for education.
-It can be used to study and adapt in learning, but it is forbidden to use it for business and commercial purposes whether directly or indirectly in every case
+It can be used for education.It can be used to study and adapt in learning, but it is forbidden to use it for business and commercial purposes whether directly or indirectly in every case
 
 
 
