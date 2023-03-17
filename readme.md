@@ -1,6 +1,7 @@
 
 
 # How to use this program!!
+<br>
 1.git clone or download and extract folder
 2.download mongodb
 3 create new database in mongodb
@@ -29,5 +30,6 @@
 8.open command promt then go to "app" folder
 9.run command "npm install" *that will install every thing you need*
 10.running web by command "nodemon"
+<br>
 
 If you have any problems or questions, ask Norapat Saema by adding Line to ID 0875557011
