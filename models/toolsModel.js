@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const url = 'mongodb://127.0.0.1:27017/BRE';
+const url = 'mongodb://127.0.0.1:27017/BRE';// put your mongodb URL here
 mongoose.connect(url);
 
 // ตรวจสอบการเชื่อมต่อ
